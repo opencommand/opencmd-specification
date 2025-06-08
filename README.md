@@ -75,3 +75,61 @@ name: git
 version: 2.44.0
 vendor: git-scm
 ```
+
+## Options
+
+The `options` section defines the flags and parameters accepted by a command. OpenCmd adopts a Unix-style flag design with support for short, long, and grouped boolean flags.
+
+**✅ Flag Forms**
+
+**1. Short Options**
+
+* Single-character prefixed with a single dash (`-`)
+* Example: `-a`, `-v`, `-h`
+
+**2. Long Options**
+
+* Words or phrases, prefixed with double dashes (`--`)
+* Use kebab-case for multi-word names
+* Example: `--all`, `--dry-run`, `--output-format`
+
+**3. Grouped Short Boolean Flags**
+
+* Multiple short flags that take no value can be grouped together
+* Example: `-a -b -c` ⇒ `-abc`
+
+**4. Option with Value**
+Options can accept values of specific types, such as strings, numbers, booleans, enums, paths, and more. This enables commands to expose rich, typed interfaces for configuration.
+
+* Short form: `-o value`
+* Long form: `--output value`
+
+**Value Types:**
+
+| Type | Description | Example Input |
+| ---- | ---- | ---- |
+| str | Free-form text | `--name "Alice"` |
+| num | numbers | `--count 5`, `--ratio 0.75` |
+| bool | Boolean values (true/false); often implicit with flags | `--verbose` |
+| enum |
+| list | Comma-separated values or multiple use | `--tag "a" --tag "b`, --tag ["a", "b"] |
+| map | 
+| date | Date strings in a defined format | `--start "2024-01-01"` |
+| command | 
+| object |
+
+**📌 Naming Convention**
+
+* Use lowercase letters only (`a`–`z`)
+* Multi-word long flags use **kebab-case**
+    * ✅ `--dry-run`
+    * ❌ `--dry_run`, `--DryRun`
+
+**🧪 Examples**
+
+```sh
+mycmd -a --verbose --output "result.txt"
+mycmd -abc            # Equivalent to -a -b -c
+mycmd --dry-run
+mycmd -ao "result.txt"   # Equivalent to -a -o "result.txt"
+```
