@@ -1,0 +1,29 @@
+version: "0.0.1" # OpenCmd Version
+verndor: opencmd.io
+
+name: my-cmd
+usage: my-cmd [options] [files]...
+commands: 
+  - name: sayHello
+    usage: 
+    short: 
+    long:
+    options:
+      - name: format
+        alias: [-f, --format]
+        description: 
+        usage: -f {}
+        type: str
+
+options: 
+  - name: help
+    alias: [-h, --help]
+    description: Show 
+    type: bool
+  - name: version
+    alias: [-v, --version]
+    description: Show version
+    type: bool
+  - name: files
+    description: 
+    type: eclipsis
